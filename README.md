@@ -7,7 +7,7 @@ underlying tile service.
 
 See the [example](//consbio.github.io/Leaflet.Basemaps).
 
-_Tested with Leaflet 1.1.0_
+_Tested with Leaflet 1.9.4_
 
 ## Install
 
@@ -48,30 +48,28 @@ Example usage:
 
 ```
 var basemaps = [
-    L.tileLayer('//{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png', {
-        attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-        subdomains: 'abcd',
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>',
+        subdomains: "abc",
         maxZoom: 20,
         minZoom: 0,
-        label: 'Toner Lite'  // optional label used for tooltip
+        label: "OpenStreetMap"
     }),
-    L.tileLayer('//{s}.tile.stamen.com/toner/{z}/{x}/{y}.png', {
-        attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-        subdomains: 'abcd',
+    L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+        attribution:
+            'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
         maxZoom: 20,
         minZoom: 0,
-        label: 'Toner'
+        label: "Satellite"
     }),
-    L.tileLayer('//{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.png', {
-        attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-        subdomains: 'abcd',
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
+        attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: "abcd",
         maxZoom: 16,
         minZoom: 1,
-        label: 'Watercolor'
-    }),
-    L.tileLayer.wms('https://firms.modaps.eosdis.nasa.gov/wms/viirs', {
-        layers: 'NASA FIRMS',
-        label: 'NASA Fire Hotspots'
+        label: "Voyager"
     })
 ];
 
@@ -102,29 +100,29 @@ to an arbitrary image. Just make sure that the target image is not too big.
 Example:
 
 ```
-L.tileLayer('//stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png', {
-    attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-    subdomains: 'abcd',
+L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+    attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)',
+    subdomains: "abc",
+    maxZoom: 17,
+    minZoom: 0,
+    label: "OpenTopoMap",
+    iconURL: 'https://tile.opentopomap.org/4/2/5.png',
+}),
+L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+    attribution:
+        'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
     maxZoom: 20,
     minZoom: 0,
-    label: 'Toner',
-    iconURL: '//stamen-tiles-a.a.ssl.fastly.net/toner/4/2/5.png'
-}),
-L.tileLayer('//stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.png', {
-    attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-    subdomains: 'abcd',
-    maxZoom: 16,
-    minZoom: 1,
-    label: 'Watercolor',
+    label: "Satellite",
     iconURL: 'alt_icon.jpg'
 })
 ```
 
 ## Development
 
--   `npm install`
--   `node_modules/.bin/gulp` (starts file watcher)
--   `node_modules/.bin/gulp build` ( builds minified version)
+- `npm install`
+- `node_modules/.bin/gulp` (starts file watcher)
+- `node_modules/.bin/gulp build` ( builds minified version)
 
 ## Credits:
 
@@ -132,6 +130,6 @@ Developed and maintained with support from the [Peninsular Florida Landscape Con
 
 ## Contributors:
 
--   [Brendan Ward](https://github.com/brendan-ward)
--   [Nik Molnar](https://github.com/nikmolnar)
--   [Kaveh Karimi](https://github.com/ka7eh)
+- [Brendan Ward](https://github.com/brendan-ward)
+- [Nik Molnar](https://github.com/nikmolnar)
+- [Kaveh Karimi](https://github.com/ka7eh)
