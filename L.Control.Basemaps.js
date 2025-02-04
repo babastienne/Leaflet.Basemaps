@@ -38,6 +38,7 @@ L.Control.Basemaps = L.Control.extend({
                     d._url,
                     L.extend(
                         {
+                            r: this.options.detectRetina && L.Browser.retina && this.options.maxZoom > 0 ? '@2x' : '',
                             s: d._getSubdomain(coords),
                             x: coords.x,
                             y: d.options.tms ? d._globalTileRange.max.y - coords.y : coords.y,
